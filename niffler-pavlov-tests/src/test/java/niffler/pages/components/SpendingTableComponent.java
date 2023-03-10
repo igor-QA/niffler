@@ -1,5 +1,6 @@
 package niffler.pages.components;
 
+
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import niffler.api.spend.dto.SpendDto;
@@ -14,7 +15,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SpendingTableComponent extends BaseComponent {
-
     private final SelenideElement self = $(".spendings__content");
 
     @Step("Check that spending table contains spending")
@@ -29,14 +29,16 @@ public class SpendingTableComponent extends BaseComponent {
         }
         return this;
     }
+
     private String getAmountInSpendingTableStyle(Double amount) {
         NumberFormat nf = DecimalFormat.getInstance();
         nf.setMaximumFractionDigits(0);
         nf.setGroupingUsed(false);
         return nf.format(amount);
     }
+
     private String getDateInSpendingTableStyle(Date spendDate) {
-        DateFormat dateFormat = new SimpleDateFormat("dd MMM yy");
+        DateFormat dateFormat = new SimpleDateFormat("d MMM yy");
         return dateFormat.format(spendDate);
     }
 }

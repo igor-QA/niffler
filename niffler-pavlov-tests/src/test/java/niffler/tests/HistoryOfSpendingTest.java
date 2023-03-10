@@ -10,10 +10,10 @@ import static niffler.models.Category.PRODUCTS;
 
 class HistoryOfSpendingTest extends BaseTest {
 
-    @WithSpend(amount = 2_500.0, username = "ipavlov")
+    @WithSpend(amount = 2_500.13, username = "ipavlov")
     private SpendDto restaurantSpend;
 
-    @WithSpend(category = PRODUCTS, amount = 1_000.0, description = "Спасибо Саше Кирееву", username = "ipavlov")
+    @WithSpend(category = PRODUCTS, amount = 1_000.01, description = "Спасибо Саше Кирееву", username = "ipavlov")
     private SpendDto productSpend;
 
     @BeforeEach
@@ -28,3 +28,4 @@ class HistoryOfSpendingTest extends BaseTest {
                 .checkContainsSpending(restaurantSpend, productSpend);
     }
 }
+

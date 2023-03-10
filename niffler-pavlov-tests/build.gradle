@@ -1,6 +1,8 @@
+
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.11.2'
+    id 'io.qameta.allure' version '2.9.6'
+    id "io.freefair.lombok" version "6.4.2"
 }
 
 group 'guru.qa'
@@ -10,41 +12,46 @@ repositories {
     mavenCentral()
 }
 
+def allureVersion = "2.17.3",
+    junitVersion = "5.9.2",
+    aspectjWeaverVersion = "1.9.19",
+    selenideVersion = "6.11.1",
+    restAssuredVersion = "5.3.0",
+    ownerVersion = "1.0.12",
+    retrofit = "2.9.0",
+    converterJackson = "2.9.0"
+
+
+
 allure {
-    autoconfigure = true
-    version = '2.20.1'
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.22'
-    implementation 'org.junit.jupiter:junit-jupiter:5.9.2'
-    implementation "com.codeborne:selenide:6.11.1"
-    implementation "io.rest-assured:rest-assured:5.3.0"
-    implementation "org.aeonbits.owner:owner:1.0.12"
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
-    implementation 'com.squareup.okhttp:logging-interceptor:2.7.5'
-    implementation 'org.springframework:spring-jdbc:6.0.4'
-    implementation 'org.postgresql:postgresql:42.5.3'
-    implementation 'org.hibernate:hibernate-core:6.1.7.Final'
-    implementation("io.qameta.allure:allure-junit5:2.20.1") {
-        exclude group: "org.junit.platform"
-        exclude group: "org.junit.jupiter"
-    }
-    testImplementation 'com.codeborne:selenide:6.11.1'
+    testImplementation (
+            "org.aspectj:aspectjweaver:$aspectjWeaverVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "com.squareup.retrofit2:retrofit:$retrofit",
+            "com.squareup.retrofit2:converter-jackson:$converterJackson",
+            "com.squareup.okhttp3:logging-interceptor:3.14.9"
+    )
 }
 
 test {
     useJUnitPlatform()
-    options {
-        systemProperties(System.getProperties())
-    }
-}
-
-task wrapper(type: Wrapper){
-    gradleVersion = '7.2'
-}
-
-task prepareKotlinBuildScriptModel {
-
 }

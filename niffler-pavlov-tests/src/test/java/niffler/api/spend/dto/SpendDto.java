@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import niffler.api.base.BaseDto;
 import niffler.models.Category;
 import niffler.models.Currency;
+
 import java.util.Date;
 
 @Data
@@ -23,5 +24,4 @@ public final class SpendDto extends BaseDto {
     public String toJson() {
         return GSON.toJson(this);
     }
-
 }

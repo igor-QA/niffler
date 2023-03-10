@@ -3,6 +3,7 @@ package niffler.models;
 import com.google.gson.*;
 import com.google.gson.annotations.JsonAdapter;
 import lombok.AllArgsConstructor;
+
 import java.lang.reflect.Type;
 
 @AllArgsConstructor
@@ -37,5 +38,4 @@ public enum Category {
             return OTHER;
         }
     }
-
 }

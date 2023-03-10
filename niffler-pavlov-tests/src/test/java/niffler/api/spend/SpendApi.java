@@ -4,8 +4,8 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import niffler.api.base.BaseApi;
-import niffler.api.spend.endpoint.SpendEndpoint;
 import niffler.api.spend.dto.SpendDto;
+import niffler.api.spend.endpoint.SpendEndpoint;
 
 public final class SpendApi extends BaseApi {
 
